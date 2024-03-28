@@ -4,9 +4,9 @@ namespace Bukita\SageBoilerplate\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Bukita\SageBoilerplate\Console\ExampleCommand;
-use Bukita\SageBoilerplate\Example;
+use Bukita\SageBoilerplate\BuildTemplates;
 
-class ExampleServiceProvider extends ServiceProvider
+class BuildTemplatesServiceProvider extends ServiceProvider
 {
     /**
      * Register any application services.
@@ -15,8 +15,8 @@ class ExampleServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->singleton('Example', function () {
-            return new Example($this->app);
+        $this->app->singleton('BuildTemplates', function () {
+            return new BuildTemplates($this->app);
         });
 
         $this->mergeConfigFrom(
@@ -36,15 +36,18 @@ class ExampleServiceProvider extends ServiceProvider
             __DIR__.'/../../config/example.php' => $this->app->configPath('example.php'),
         ], 'config');
 
-        $this->loadViewsFrom(
-            __DIR__.'/../../resources/views',
-            'Example',
-        );
+        $this->publishes([
+            __DIR__ . '/../publishes/app/Fields/Templates' => $this->app->path('Fields/Templates'),
+        ], 'template-acf-fields');
+
+        $this->publishes([
+            __DIR__ . '/../publishes/resources/views/templates' => $this->app->resourcePath('views/templates'),
+        ], 'template-views');
 
         $this->commands([
             ExampleCommand::class,
         ]);
 
-        $this->app->make('Example');
+        $this->app->make('BuildTemplates');
     }
 }

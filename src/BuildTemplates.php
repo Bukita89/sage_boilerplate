@@ -5,7 +5,7 @@ namespace Bukita\SageBoilerplate;
 use Illuminate\Support\Arr;
 use Roots\Acorn\Application;
 
-class Example
+class BuildTemplates
 {
     /**
      * The application instance.
@@ -26,7 +26,7 @@ class Example
     }
 
     /**
-     * Retrieve a random inspirational quote.
+     * Retrieve a random inspirational quote.//left here for testing purposes
      *
      * @return string
      */
