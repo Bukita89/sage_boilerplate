@@ -1,6 +1,6 @@
 <?php
 
-namespace VendorName\ExamplePackage\Facades;
+namespace Bukita\SageBoilerplate\Facades;
 
 use Illuminate\Support\Facades\Facade;
 

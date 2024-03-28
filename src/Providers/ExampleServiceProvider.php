@@ -1,10 +1,10 @@
 <?php
 
-namespace VendorName\ExamplePackage\Providers;
+namespace Bukita\SageBoilerplate\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use VendorName\ExamplePackage\Console\ExampleCommand;
-use VendorName\ExamplePackage\Example;
+use Bukita\SageBoilerplate\Console\ExampleCommand;
+use Bukita\SageBoilerplate\Example;
 
 class ExampleServiceProvider extends ServiceProvider
 {

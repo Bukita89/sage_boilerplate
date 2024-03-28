@@ -1,9 +1,9 @@
 <?php
 
-namespace VendorName\ExamplePackage\Console;
+namespace Bukita\SageBoilerplate\Console;
 
 use Roots\Acorn\Console\Commands\Command;
-use VendorName\ExamplePackage\Facades\Example;
+use Bukita\SageBoilerplate\Facades\Example;
 
 class ExampleCommand extends Command
 {
