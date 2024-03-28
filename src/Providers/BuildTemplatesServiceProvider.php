@@ -37,11 +37,11 @@ class BuildTemplatesServiceProvider extends ServiceProvider
         ], 'config');
 
         $this->publishes([
-            __DIR__ . '/../publishes/app/Fields/Templates' => $this->app->path('Fields/Templates'),
+            __DIR__ . '/../../publishes/app/Fields/Templates' => $this->app->path('Fields/Templates'),
         ], 'template-acf-fields');
 
         $this->publishes([
-            __DIR__ . '/../publishes/resources/views/templates' => $this->app->resourcePath('views/templates'),
+            __DIR__ . '/../../publishes/resources/views/templates' => $this->app->resourcePath('views/templates'),
         ], 'template-views');
 
         $this->commands([
