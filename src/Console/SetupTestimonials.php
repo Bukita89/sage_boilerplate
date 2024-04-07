@@ -30,8 +30,8 @@ class SetupTestimonials extends Command
     {
         $files = new Filesystem();
 
-        $acf_source = __DIR__ . '../templates/testimonials/acf';
-        $view_source = __DIR__ . '../templates/testimonials/view';
+        $acf_source = dirname(__DIR__) . '/templates/testimonials/acf';
+        $view_source = dirname(__DIR__) . 'templates/testimonials/view';
 
         $acf_desctination = app_path('Fields/Templates');
         $view_destination = resource_path('/views/templates');
@@ -46,9 +46,9 @@ class SetupTestimonials extends Command
             $view_destination
         );
 
-        $this->info('Testimonials setup - success');
+       $this->info($acf_source);
 
-        return $this->info($acf_source);
+       return $this->info('Testimonials setup - success');
 
     }
 }
