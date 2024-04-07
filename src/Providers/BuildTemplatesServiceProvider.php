@@ -3,7 +3,6 @@
 namespace Bukita\SageBoilerplate\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use Bukita\SageBoilerplate\Console\ExampleCommand;
 use Bukita\SageBoilerplate\Console\SetupTestimonials;
 use Bukita\SageBoilerplate\BuildTemplates;
 
@@ -38,7 +37,6 @@ class BuildTemplatesServiceProvider extends ServiceProvider
         ], 'config');
 
         $this->commands([
-            ExampleCommand::class,
             SetupTestimonials::class,
         ]);
 

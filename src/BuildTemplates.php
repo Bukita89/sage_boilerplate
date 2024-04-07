@@ -25,15 +25,4 @@ class BuildTemplates
         $this->app = $app;
     }
 
-    /**
-     * Retrieve a random inspirational quote.//left here for testing purposes
-     *
-     * @return string
-     */
-    public function getQuote()
-    {
-        return Arr::random(
-            config('example.quotes')
-        );
-    }
 }
