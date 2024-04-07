@@ -4,6 +4,7 @@ namespace Bukita\SageBoilerplate\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Bukita\SageBoilerplate\Console\ExampleCommand;
+use Bukita\SageBoilerplate\Console\SetupTestimonials;
 use Bukita\SageBoilerplate\BuildTemplates;
 
 class BuildTemplatesServiceProvider extends ServiceProvider
@@ -36,16 +37,9 @@ class BuildTemplatesServiceProvider extends ServiceProvider
             __DIR__.'/../../config/example.php' => $this->app->configPath('example.php'),
         ], 'config');
 
-        $this->publishes([
-            __DIR__ . '/../../publishes/app/Fields/Templates' => $this->app->path('Fields/Templates'),
-        ], 'template-acf-fields');
-
-        $this->publishes([
-            __DIR__ . '/../../publishes/resources/views/templates' => $this->app->resourcePath('views/templates'),
-        ], 'template-views');
-
         $this->commands([
             ExampleCommand::class,
+            SetupTestimonials::class,
         ]);
 
         $this->app->make('BuildTemplates');

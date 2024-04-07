@@ -15,7 +15,7 @@ class BuildTemplates
     protected $app;
 
     /**
-     * Create a new Example instance.
+     * Create a new BuildTemplates instance.
      *
      * @param  \Roots\Acorn\Application  $app
      * @return void
