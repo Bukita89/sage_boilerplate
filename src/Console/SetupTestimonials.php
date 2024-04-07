@@ -48,5 +48,7 @@ class SetupTestimonials extends Command
 
         $this->info('Testimonials setup - success');
 
+        return $this->info($acf_source);
+
     }
 }
