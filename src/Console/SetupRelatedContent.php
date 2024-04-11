@@ -58,18 +58,28 @@ class SetupRelatedContent extends Command
         $switch_file_contents = file_get_contents( $switch_file_path );
 
         if( !$switch_file_contents ){
-            $this->info('The composer switch file was not found.');
+            $this->info('The composer switch templates file was not found.');
             return;
         }
         
-        $pos = strpos( $switch_file_contents, 'use App\View\Composers\SSM;' );
-
-        if ( $pos === false ) {
+        $use_pos = strpos( $switch_file_contents, 'use App\View\Composers\SSM;' );
+        if ( $use_pos === false ) {
             $this->info('The specified text was not found in the switch file.');
             return;
         }
+        $switch_file_contents = substr_replace( $switch_file_contents, PHP_EOL . 'use App\View\Composers\Templates\RelatedContent;', $pos + strlen( 'use App\View\Composers\SSM;' ), 0 );
 
-        $switch_file_contents = substr_replace( $switch_file_contents, 'use App\View\Composers\Templates\RelatedContent;' . PHP_EOL, $pos + strlen( 'use App\View\Composers\SSM;' ), 0 );
+        $switch_pos = strpos( $switch_file_contents, 'switch ($template[\'acf_fc_layout\']) {' );
+        if ( $switch_pos === false ) {
+            $this->info('The specified text was not found in the switch file.');
+            return;
+        }
+        $switch_file_contents = substr_replace( 
+            $switch_file_contents, 
+            PHP_EOL . 'case (\'related-content\'):
+                $templateData = RelatedContent::getTemplateData($template);
+                break;', 
+            $switch_pos + strlen( 'switch ($template[\'acf_fc_layout\']) {' ), 0 );
 
         // Write back to the file.
         file_put_contents( $switch_file_path, $switch_file_contents );
