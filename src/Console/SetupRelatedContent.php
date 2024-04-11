@@ -36,7 +36,7 @@ class SetupRelatedContent extends Command
 
         $acf_desctination = app_path('Fields/Templates');
         $view_destination = resource_path('/views/templates');
-        $composer_source = app_path('View/Composers/Templates');
+        $composer_destination = app_path('View/Composers/Templates');
 
         $files->copyDirectory(
             $acf_source, 
@@ -50,7 +50,7 @@ class SetupRelatedContent extends Command
 
         $files->copyDirectory(
             $composer_source, 
-            $composer_source
+            $composer_destination
         );
 
         //insert template line to composer switch
