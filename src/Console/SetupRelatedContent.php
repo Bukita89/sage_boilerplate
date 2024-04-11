@@ -54,19 +54,25 @@ class SetupRelatedContent extends Command
         );
 
         //insert template line to composer switch
-        $file_contents = file_get_contents( $composer_source . '/RelatedContent.php' );
+        $switch_file_path = app_path('View/Composers/Switches/Templates.php');
+        $switch_file_contents = file_get_contents( $switch_file_path );
+
+        if( !$switch_file_contents ){
+            $this->info('The composer switch file was not found.');
+            return;
+        }
         
-        $pos = strpos( $file_contents, 'use App\View\Composers\SSM;' );
+        $pos = strpos( $switch_file_contents, 'use App\View\Composers\SSM;' );
 
         if ( $pos === false ) {
-            $this->info('The specified text was not found in the file.');
+            $this->info('The specified text was not found in the switch file.');
             return;
         }
 
-        $file_contents = substr_replace( $file_contents, 'use App\View\Composers\Templates\RelatedContent;' . PHP_EOL, $pos + strlen( 'use App\View\Composers\SSM;' ), 0 );
+        $switch_file_contents = substr_replace( $switch_file_contents, 'use App\View\Composers\Templates\RelatedContent;' . PHP_EOL, $pos + strlen( 'use App\View\Composers\SSM;' ), 0 );
 
         // Write back to the file.
-        file_put_contents( $file, app_path('View/Composers/Switches/Templates.php') );
+        file_put_contents( $switch_file_path, $switch_file_contents );
 
        return $this->info('Related Content setup - success');
 
