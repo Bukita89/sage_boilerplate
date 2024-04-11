@@ -67,7 +67,7 @@ class SetupRelatedContent extends Command
             $this->info('The specified text was not found in the switch file.');
             return;
         }
-        $switch_file_contents = substr_replace( $switch_file_contents, PHP_EOL . 'use App\View\Composers\Templates\RelatedContent;', $pos + strlen( 'use App\View\Composers\SSM;' ), 0 );
+        $switch_file_contents = substr_replace( $switch_file_contents, PHP_EOL . 'use App\View\Composers\Templates\RelatedContent;', $use_pos + strlen( 'use App\View\Composers\SSM;' ), 0 );
 
         $switch_pos = strpos( $switch_file_contents, 'switch ($template[\'acf_fc_layout\']) {' );
         if ( $switch_pos === false ) {
