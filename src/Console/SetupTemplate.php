@@ -34,6 +34,9 @@ class SetupTemplate extends Command
 
         $files = new Filesystem();
 
+        $this->info(app_path('Fields/Templates/' . $template_name));
+        $this->info($files->exists(app_path('Fields/Templates/' . $template_name)));
+
         if($files->exists(app_path('Fields/Templates/' . $template_name))){
             $this->info('The template was already built.');
             return;
