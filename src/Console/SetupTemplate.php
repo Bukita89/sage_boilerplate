@@ -74,7 +74,7 @@ class SetupTemplate extends Command
         }
         $lb_file_contents = substr_replace( 
             $lb_file_contents, 
-            PHP_EOL . '\t->addLayout(' . $template_name . '::getFields())', 
+            PHP_EOL . '->addLayout(' . $template_name . '::getFields())', 
             $lb_pos + strlen( '->addLayout(Columns::getFields()){' ), 0 );
  
         // Write back to the file.
@@ -114,7 +114,7 @@ class SetupTemplate extends Command
             }
             $switch_file_contents = substr_replace( 
                 $switch_file_contents, 
-                PHP_EOL . '\tcase (\'' . $template_slug . '\'):
+                PHP_EOL . 'case (\'' . $template_slug . '\'):
                     $templateData = '. $template_name . '::getTemplateData($template);
                     break;', 
                 $switch_pos + strlen( 'switch ($template[\'acf_fc_layout\']) {' ), 0 );
