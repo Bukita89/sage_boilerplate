@@ -30,12 +30,17 @@ class SetupTemplate extends Command
     {
         $template_slug = $this->argument('template_slug');
         $has_composer = $this->argument('has_composer');
+        $template_name = str_replace(' ', '', ucwords(str_replace('-', ' ', $template_slug)));
 
         $files = new Filesystem();
 
+        if($files->exists(app_path('Fields/Templates/' . $template_name))){
+            $this->info('The template was already built.');
+            return;
+        }
+
         $acf_source = dirname(__DIR__) . '/templates/' . $template_slug . '/acf';
         $view_source = dirname(__DIR__) . '/templates/' . $template_slug . '/view';
-        $template_name = str_replace(' ', '', ucwords(str_replace('-', ' ', $template_slug)));
 
         $acf_destination = app_path('Fields/Templates');
         $view_destination = resource_path('/views/templates');
