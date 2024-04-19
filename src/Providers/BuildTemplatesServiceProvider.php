@@ -18,11 +18,7 @@ class BuildTemplatesServiceProvider extends ServiceProvider
         $this->app->singleton('BuildTemplates', function () {
             return new BuildTemplates($this->app);
         });
-
-        $this->mergeConfigFrom(
-            __DIR__.'/../../config/example.php',
-            'example'
-        );
+        
     }
 
     /**
@@ -32,9 +28,6 @@ class BuildTemplatesServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->publishes([
-            __DIR__.'/../../config/example.php' => $this->app->configPath('example.php'),
-        ], 'config');
 
         $this->commands([
             SetupTemplate::class

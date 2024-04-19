@@ -12,7 +12,7 @@ class SetupTemplate extends Command
      *
      * @var string
      */
-    protected $signature = 'setup:template {template_slug} {has_composer=false}';
+    protected $signature = 'setup:template {template_slug} {has_composer}';
 
     /**
      * The console command description.
@@ -33,9 +33,6 @@ class SetupTemplate extends Command
         $template_name = str_replace(' ', '', ucwords(str_replace('-', ' ', $template_slug)));
 
         $files = new Filesystem();
-
-        $this->info(app_path('Fields/Templates/' . $template_name . '.php'));
-        $this->info($files->exists(app_path('Fields/Templates/' . $template_name . '.php')));
 
         if($files->exists(app_path('Fields/Templates/' . $template_name . '.php'))){
             $this->info('The template was already built.');
@@ -82,7 +79,7 @@ class SetupTemplate extends Command
         }
         $lb_file_contents = substr_replace( 
             $lb_file_contents, 
-            PHP_EOL . '->addLayout(' . $template_name . '::getFields())', 
+            PHP_EOL . "\t\t\t\t" . '->addLayout(' . $template_name . '::getFields())', 
             $lb_pos + strlen( '->addLayout(Columns::getFields()){' ), 0 );
  
         // Write back to the file.
@@ -122,7 +119,7 @@ class SetupTemplate extends Command
             }
             $switch_file_contents = substr_replace( 
                 $switch_file_contents, 
-                PHP_EOL . 'case (\'' . $template_slug . '\'):
+                PHP_EOL . "\t\t\t\t" . 'case (\'' . $template_slug . '\'):
                     $templateData = '. $template_name . '::getTemplateData($template);
                     break;', 
                 $switch_pos + strlen( 'switch ($template[\'acf_fc_layout\']) {' ), 0 );

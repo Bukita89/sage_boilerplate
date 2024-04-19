@@ -21,10 +21,7 @@
     "acorn": {
       "providers": [
         "Bukita\\SageBoilerplate\\Providers\\BuildTemplatesServiceProvider"
-      ],
-      "aliases": {
-        "Example": "Bukita\\SageBoilerplate\\Facades\\Example"
-      }
+      ]
     }
   }
 }
