@@ -12,7 +12,7 @@ class SetupTemplate extends Command
      *
      * @var string
      */
-    protected $signature = 'setup:template {template_slug} {has_composer}';
+    protected $signature = 'setup:template {template_slug} {--has-composer}';
 
     /**
      * The console command description.
@@ -29,7 +29,7 @@ class SetupTemplate extends Command
     public function handle()
     {
         $template_slug = $this->argument('template_slug');
-        $has_composer = $this->argument('has_composer');
+        $has_composer = $this->option('has-composer');
         $template_name = str_replace(' ', '', ucwords(str_replace('-', ' ', $template_slug)));
 
         $files = new Filesystem();
